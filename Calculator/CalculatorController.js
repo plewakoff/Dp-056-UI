@@ -1,13 +1,11 @@
 function CalculatorController (element) {
     var calculator = new Calculator(),
-        inputs =
-        {
+        inputs = {
             first_operand : element.getElementsByClassName("first_operand")[0],
             second_operand : element.getElementsByClassName("second_operand")[0],
             result : element.getElementsByClassName("result")[0]
         },
-        buttons =
-        {
+        buttons = {
             sum_button : element.getElementsByClassName("sum_button")[0],
             minus_button : element.getElementsByClassName("minus_button")[0],
             division_button : element.getElementsByClassName("division_button")[0],
@@ -20,7 +18,7 @@ function CalculatorController (element) {
     buttons["multiple_button"].addEventListener("click", multiple, false);
 
     function sum () {
-        inputs["result"].value = calculator.sum(+inputs["first_operand"].value, +inputs["second_operand"].value);
+        inputs["result"].value = calculator.sum(Number(inputs["first_operand"].value), Number(inputs["second_operand"].value));
     }
 
     function minus () {
