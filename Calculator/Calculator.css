@@ -1,0 +1,27 @@
+body {
+    text-align: center;
+}
+
+#calculator {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 15px;
+    background: lightgray;
+}
+
+.first_operand,
+.second_operand {
+
+}
+
+.sum_button,
+.minus_button,
+.division_button,
+.multiple_button {
+    width: 32px;
+    height: 32px;
+}
+
+p {
+    text-align: center;
+}
