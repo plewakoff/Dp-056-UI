@@ -17,8 +17,10 @@ function CalculatorController (element) {
     buttons["division_button"].addEventListener("click", division, false);
     buttons["multiple_button"].addEventListener("click", multiple, false);
 
+
+
     function sum () {
-        inputs["result"].value = calculator.sum(Number(inputs["first_operand"].value), Number(inputs["second_operand"].value));
+        inputs["result"].value = calculator.sum(inputs["first_operand"].value, inputs["second_operand"].value);
     }
 
     function minus () {
