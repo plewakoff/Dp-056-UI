@@ -1,41 +1,35 @@
 function ClockController (element) {
-    var short_clock = new ShortClock(element),
-        full_clock = new FullClock(element),
-		date_clock = new DateClock(element),
+    var clock = new ShortClock(element),
 		mode = "short",
-		timer;
+		timer = setInterval(function () {clock.render();}, 1000);
 		
-	short_clock.render();
+	clock.render();
 	
 	element.addEventListener("contextmenu", timeToDate, false);
     element.addEventListener("click", timeMode, false);
 	
 	function timeMode () {
         if(mode === "short") {
-            full_clock.render();
+            clock = new FullClock(element);
+            clock.render();
             mode = "full";
-            clearInterval(timer);
-            timer = setInterval(function () {full_clock.render();}, 1000);
         } else {
-            short_clock.render();
+            clock = new ShortClock(element);
+            clock.render();
             mode = "short";
-            clearInterval(timer);
-            timer = setInterval(function () {short_clock.render();}, 1000);
         }
     }
 
     function timeToDate (e) {
         e.preventDefault();
         if(mode !== "date") {
-            date_clock.render();
+            clock = new DateClock(element);
+            clock.render();
             mode = "date";
-            clearInterval(timer);
-            timer = setInterval(function () {date_clock.render();}, 1000);
         } else {
-            short_clock.render();
+            clock = new ShortClock(element);
+            clock.render();
             mode = "short";
-            clearInterval(timer);
-            timer = setInterval(function () {short_clock.render();}, 1000);
         }
     }
 	
