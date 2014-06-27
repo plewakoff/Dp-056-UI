@@ -1,6 +1,5 @@
 function Calculator () {
-    var ajax = getAjax(),
-        result;
+    var ajax = getAjax();
 
     function getAjax () {
         var ajax;
