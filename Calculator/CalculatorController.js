@@ -17,22 +17,36 @@ function CalculatorController (element) {
     buttons["division_button"].addEventListener("click", division, false);
     buttons["multiple_button"].addEventListener("click", multiple, false);
 
+    function sum() {
+        calculator.sum(inputs["first_operand"].value, inputs["second_operand"].value, showSum);
+    }
 
-
-    function sum () {
-        inputs["result"].value = calculator.sum(inputs["first_operand"].value, inputs["second_operand"].value);
+    function showSum (result) {
+        inputs["result"].value = result;
     }
 
     function minus () {
-        inputs["result"].value = calculator.minus(inputs["first_operand"].value, inputs["second_operand"].value);
+        calculator.minus(inputs["first_operand"].value, inputs["second_operand"].value, showMinus);
+    }
+
+    function showMinus (result) {
+        inputs["result"].value = result;
     }
 
     function division () {
-        inputs["result"].value = calculator.division(inputs["first_operand"].value, inputs["second_operand"].value);
+        calculator.division(inputs["first_operand"].value, inputs["second_operand"].value, showDivision);
+    }
+
+    function showDivision (result) {
+        inputs["result"].value = result;
     }
 
     function multiple () {
-        inputs["result"].value = calculator.multiplication(inputs["first_operand"].value, inputs["second_operand"].value);
+        calculator.multiplication(inputs["first_operand"].value, inputs["second_operand"].value, showMultiple);
+    }
+
+    function showMultiple (result) {
+        inputs["result"].value = result;
     }
 
     return this;

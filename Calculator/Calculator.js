@@ -13,52 +13,48 @@ function Calculator () {
         return ajax;
     }
 
-    this.sum = function (first_operand, second_operand) {
-        ajax.open("POST", "add.php", false);
+    this.sum = function (first_operand, second_operand, func) {
+        ajax.open("POST", "add.php", true);
         ajax.onreadystatechange = function () {
             if(ajax.readyState === 4 && ajax.status === 200) {
-                result = ajax.responseText;
+                func(ajax.responseText);
             }
         };
         ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         ajax.send("operand1=" + first_operand + "&operand2=" + second_operand);
-        return result;
     };
 
-    this.minus = function (first_operand, second_operand) {
-        ajax.open("POST", "sub.php", false);
+    this.minus = function (first_operand, second_operand, func) {
+        ajax.open("POST", "sub.php", true);
         ajax.onreadystatechange = function () {
             if(ajax.readyState === 4 && ajax.status === 200) {
-                result = ajax.responseText;
+                func(ajax.responseText);
             }
         };
         ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         ajax.send("operand1=" + first_operand + "&operand2=" + second_operand);
-        return result;
     };
 
-    this.multiplication = function (first_operand, second_operand) {
-        ajax.open("POST", "mul.php", false);
+    this.multiplication = function (first_operand, second_operand, func) {
+        ajax.open("POST", "mul.php", true);
         ajax.onreadystatechange = function () {
             if(ajax.readyState === 4 && ajax.status === 200) {
-                result = ajax.responseText;
+                func(ajax.responseText);
             }
         };
         ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         ajax.send("operand1=" + first_operand + "&operand2=" + second_operand);
-        return result;
     };
 
-    this.division = function (first_operand, second_operand) {
-        ajax.open("POST", "div.php", false);
+    this.division = function (first_operand, second_operand, func) {
+        ajax.open("POST", "div.php", true);
         ajax.onreadystatechange = function () {
             if(ajax.readyState === 4 && ajax.status === 200) {
-                result = ajax.responseText;
+                func(ajax.responseText);
             }
         };
         ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         ajax.send("operand1=" + first_operand + "&operand2=" + second_operand);
-        return result;
     };
 
     return this;
