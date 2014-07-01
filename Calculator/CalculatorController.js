@@ -10,42 +10,26 @@ function CalculatorController (element) {
             minus_button : element.getElementsByClassName("minus_button")[0],
             division_button : element.getElementsByClassName("division_button")[0],
             multiple_button : element.getElementsByClassName("multiple_button")[0]
+        },
+        operations = {
+            "+" : "add",
+            "-" : "sub",
+            "/" : "div",
+            "*" : "mul"
         };
 
-    buttons["sum_button"].addEventListener("click", sum, false);
-    buttons["minus_button"].addEventListener("click", minus, false);
-    buttons["division_button"].addEventListener("click", division, false);
-    buttons["multiple_button"].addEventListener("click", multiple, false);
+    (function addEvents () {
+        var key;
+        for (key in buttons) {
+            buttons[key].addEventListener("click", action, false);
+        }
+    })();
 
-    function sum() {
-        calculator.sum(inputs["first_operand"].value, inputs["second_operand"].value, showSum);
+    function action (e) {
+        calculator.action(inputs["first_operand"].value, inputs["second_operand"].value, showResult, operations[e.toElement.value]);
     }
 
-    function showSum (result) {
-        inputs["result"].value = result;
-    }
-
-    function minus () {
-        calculator.minus(inputs["first_operand"].value, inputs["second_operand"].value, showMinus);
-    }
-
-    function showMinus (result) {
-        inputs["result"].value = result;
-    }
-
-    function division () {
-        calculator.division(inputs["first_operand"].value, inputs["second_operand"].value, showDivision);
-    }
-
-    function showDivision (result) {
-        inputs["result"].value = result;
-    }
-
-    function multiple () {
-        calculator.multiplication(inputs["first_operand"].value, inputs["second_operand"].value, showMultiple);
-    }
-
-    function showMultiple (result) {
+    function showResult (result) {
         inputs["result"].value = result;
     }
 
