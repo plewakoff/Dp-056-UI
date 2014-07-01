@@ -1,15 +1,15 @@
 function CalculatorController (element) {
     var calculator = new Calculator(),
         inputs = {
-            first_operand : element.getElementsByClassName("first_operand")[0],
-            second_operand : element.getElementsByClassName("second_operand")[0],
-            result : element.getElementsByClassName("result")[0]
+            first_operand : element.find(".first_operand"),
+            second_operand : element.find(".second_operand"),
+            result : element.find(".result")
         },
         buttons = {
-            sum_button : element.getElementsByClassName("sum_button")[0],
-            minus_button : element.getElementsByClassName("minus_button")[0],
-            division_button : element.getElementsByClassName("division_button")[0],
-            multiple_button : element.getElementsByClassName("multiple_button")[0]
+            sum_button : element.find(".sum_button"),
+            minus_button : element.find(".minus_button"),
+            division_button : element.find(".division_button"),
+            multiple_button : element.find(".multiple_button")
         },
         operations = {
             "+" : "add",
@@ -21,16 +21,16 @@ function CalculatorController (element) {
     (function addEvents () {
         var key;
         for (key in buttons) {
-            buttons[key].addEventListener("click", action, false);
+            buttons[key].click(action);
         }
     })();
 
     function action (e) {
-        calculator.action(inputs["first_operand"].value, inputs["second_operand"].value, showResult, operations[e.toElement.value]);
+        calculator.action(inputs["first_operand"].val(), inputs["second_operand"].val(), showResult, operations[e.toElement.value]);
     }
 
     function showResult (result) {
-        inputs["result"].value = result;
+        inputs["result"].val(result);
     }
 
     return this;
