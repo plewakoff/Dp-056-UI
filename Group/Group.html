@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Group</title>
         <link rel="stylesheet" type="text/css" href="Group.css">
+        <script src="jquery-latest.js"></script>
         <script src="Student.js"></script>
         <script src="Group.js"></script>
         <script src="StudentController.js"></script>
@@ -11,15 +12,27 @@
         <script src="main.js"></script>
     </head>
     <body>
-        <ul id="group_info"></ul></br>
-        <input type="button" id="add" value="Add Student" /></br>
-        <div id="add_div">
-            Enter student's info:</br>
-            Name - <input type="text" id="student_name" /></br>
-            Age - <input type="text" id="student_age" /></br>
-            Gender - <input type="text" id="student_gender" />
-            <input type="button" id="cancel" value="Cancel" />
-            <input type="button" id="add_student" value="Add" />
+        <div id="group">
+            <ul class="group_info"></ul>
+            <div class="add">
+                <input type="button" value="Add Student" />
+            </div>
+            <div class="add_div">
+                <p>
+                    Enter student's info:
+                </p>
+                <p>
+                    Name - <input type="text" class="student_name" />
+                </p>
+                <p>
+                    Age - <input type="text" class="student_age" />
+                </p>
+                <p>
+                    Gender - <input type="text" class="student_gender" />
+                </p>
+                <input type="button" class="cancel" value="Cancel" />
+                <input type="button" class="add_student" value="Add" />
+            </div>
         </div>
     </body>
 </html>

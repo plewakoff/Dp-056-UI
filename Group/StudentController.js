@@ -1,15 +1,7 @@
-var StudentController = (function () {
-    function Constructor (student) {
-        this.toHTML = function () {
-            var il = document.createElement("il");
+function StudentController (student) {
+    this.toHTML = function () {
+        return $("<li>" + student.toString() + "</li>");
+    };
 
-            il.innerHTML = student.toString() + "</br>";
-
-            return il;
-        };
-
-        return this;
-    }
-
-    return Constructor;
-})();
+    return this;
+}
