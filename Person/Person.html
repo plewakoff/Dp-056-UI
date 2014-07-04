@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <title>Person</title>
     <link rel="stylesheet" type="text/css" href="Person.css">
+    <script src="jquery-2.1.1.min.js"></script>
+    <script src="underscore-min.js"></script>
     <script type="text/javascript" src="Person.js"></script>
     <script type="text/javascript" src="PersonController.js"></script>
     <script type="text/javascript" src="Main.js"></script>
+    <script type="text/html" id="person_template">
+        <ul>
+            <li>Name: <%=name%></li>
+            <li>Surname: <%=surname%></li>
+            <li>Secondname: <%=secondname%></li>
+            <li>Age: <%=age%></li>
+            <li>Gender: <%=gender%></li>
+            <li>Phone: <%=phone%></li>
+            <li>Email: <%=email%></li>
+            <li>Skype: <%=skype%></li>
+        </ul>
+    </script>
   </head>
   <body>
     <table id="person_table">
@@ -28,10 +42,10 @@
         </tr>
         <tr>
             <td>
-                <label>Patronymic:</label>
+                <label>Secondname:</label>
             </td>
             <td>
-                <input type="text" id="patronymic">
+                <input type="text" id="secondname">
             </td>
         </tr>
         <tr>
@@ -76,7 +90,7 @@
         </tr>
     </table></br>
     <input type="button" value="Save" id="save_button"></br>
-    <div id="person_info"></div></br>
+    <div id="person_info"></div>
     <input type="button" value="Edit" id="edit_button">
   </body>
 </html>
