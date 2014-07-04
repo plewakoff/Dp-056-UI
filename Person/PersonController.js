@@ -1,9 +1,10 @@
 function PersonController () {
     var save_button = document.getElementById("save_button"),
         edit_button = document.getElementById("edit_button"),
-        person_info = document.getElementById("person_info"),
+        person_info = $("#person_info"),
         person_table = document.getElementById("person_table"),
-        person = new Person();
+        person = new Person(),
+        person_template = _.template($("#person_template").html());
 
     save_button.addEventListener("click", savePerson, false);
     edit_button.addEventListener("click", editPerson, false);
@@ -13,26 +14,26 @@ function PersonController () {
             age = document.getElementById("age").value,
             gender = document.getElementById("gender").value,
             surname = document.getElementById("surname").value,
-            patronymic = document.getElementById("patronymic").value,
+            secondname = document.getElementById("secondname").value,
             phone = document.getElementById("phone").value,
             email  = document.getElementById("email").value,
             skype = document.getElementById("skype").value;
 
-        person.addAttribute("Name", name);
-        person.addAttribute("Surname", surname);
-        person.addAttribute("Patronymic", patronymic);
-        person.addAttribute("Age", age);
-        person.addAttribute("Gender", gender);
-        person.addAttribute("Phone", phone);
-        person.addAttribute("Email", email);
-        person.addAttribute("Skype", skype);
+        person.addAttribute("name", name);
+        person.addAttribute("surname", surname);
+        person.addAttribute("secondname", secondname);
+        person.addAttribute("age", age);
+        person.addAttribute("gender", gender);
+        person.addAttribute("phone", phone);
+        person.addAttribute("email", email);
+        person.addAttribute("skype", skype);
 
         toHTML();
 
         save_button.style.display = "none";
         person_table.style.display = "none";
         person_info.style.display = "inline";
-        edit_button.style.display = "inline";
+        edit_button.style.display = "block";
     }
 
     function toHTML () {
@@ -42,7 +43,9 @@ function PersonController () {
         person_info.innerHTML = "";
         person_hash = person.toJSON();
 
-        for (key in person_hash) {
+        person_info.append(person_template(person_hash));
+
+        /*for (key in person_hash) {
             var div = document.createElement("div"),
                 br = document.createElement("br");
 
@@ -50,13 +53,13 @@ function PersonController () {
 
             person_info.appendChild(div);
             person_info.appendChild(br);
-        }
+        }*/
     }
 
     function editPerson () {
         save_button.style.display = "inline";
         person_table.style.display = "inline";
-        person_info.style.display = "none";
+        person_info.html("");
         edit_button.style.display = "none";
     }
 }
