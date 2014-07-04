@@ -1,27 +1,21 @@
-var Poni = (function () {
-    var oxygen;
-    function breath(){}
-
-    function Constructor () {
+var Poni = Backbone.Model.extend({
+    oxygen: 100,
+    breath: function () {},
+    constructor: function () {
         var name;
         this.getName = function () {
             return name;
         };
 
-        function resetName () {
-
-        }
+        function resetName () {}
 
         return this;
-    }
+    },
+    speed: 25,
+    run: function () {},
+    eat: function () {}
+});
 
-    Constructor.prototype.speed = 25;
-    Constructor.prototype.run = function () {
-
-    };
-    Constructor.eat = function () {
-
-    };
-
-    return Constructor;
-})();
+var Stable = Backbone.Collection.extend({
+    model: Poni
+});
