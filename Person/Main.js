@@ -1,5 +1,3 @@
-window.addEventListener('load', main, false);
-
-function main () {
-    var person_controller = new PersonController();
-}
+$(function () {
+    var person_controller = new PersonController({el: $("#person")});
+});

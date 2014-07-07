@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <title>Person</title>
     <link rel="stylesheet" type="text/css" href="Person.css">
-    <script src="jquery-2.1.1.min.js"></script>
-    <script src="underscore-min.js"></script>
-    <script type="text/javascript" src="Person.js"></script>
-    <script type="text/javascript" src="PersonController.js"></script>
-    <script type="text/javascript" src="Main.js"></script>
-    <script type="text/html" id="person_template">
+	<script type="text/html" id="person_template">
         <ul>
             <li>Name: <%=name%></li>
             <li>Surname: <%=surname%></li>
@@ -22,15 +17,22 @@
         </ul>
 		<input type="button" value="Edit" class="edit_button">
     </script>
+    <script src="jquery-2.1.1.min.js"></script>
+    <script src="underscore-min.js"></script>
+    <script src="backbone-min.js"></script>
+    <script type="text/javascript" src="Person.js"></script>
+    <script type="text/javascript" src="PersonController.js"></script>
+    <script type="text/javascript" src="Main.js"></script>
   </head>
   <body>
-    <table id="person_table">
+  <div id="person">
+    <table class="person_table">
         <tr>
             <td>
                 <label>Name:</label>
             </td>
             <td>
-                <input type="text" id="name">
+                <input type="text" class="name">
             </td>
         </tr>
         <tr>
@@ -38,7 +40,7 @@
                 <label>Surname:</label>
             </td>
             <td>
-                <input type="text" id="surname">
+                <input type="text" class="surname">
             </td>
         </tr>
         <tr>
@@ -46,7 +48,7 @@
                 <label>Secondname:</label>
             </td>
             <td>
-                <input type="text" id="secondname">
+                <input type="text" class="secondname">
             </td>
         </tr>
         <tr>
@@ -54,7 +56,7 @@
                 <label>Age:</label>
             </td>
             <td>
-                <input type="number" id="age">
+                <input type="number" class="age">
             </td>
         </tr>
         <tr>
@@ -62,7 +64,7 @@
                 <label>Gender:</label>
             </td>
             <td>
-                <input type="text" id="gender">
+                <input type="text" class="gender">
             </td>
         </tr>
         <tr>
@@ -70,7 +72,7 @@
                 <label>Phone:</label>
             </td>
             <td>
-                <input type="text" id="phone">
+                <input type="text" class="phone">
             </td>
         </tr>
         <tr>
@@ -78,7 +80,7 @@
                 <label>Email:</label>
             </td>
             <td>
-                <input type="email" id="email">
+                <input type="email" class="email">
             </td>
         </tr>
         <tr>
@@ -86,11 +88,12 @@
                 <label>Skype:</label>
             </td>
             <td>
-                <input type="text" id="skype">
+                <input type="text" class="skype">
             </td>
         </tr>
     </table></br>
-    <input type="button" value="Save" id="save_button"></br>
-    <div id="person_info"></div>
+    <input type="button" value="Save" class="save_button"></br>
+    <div class="person_info"></div>
+  </div>
   </body>
 </html>
