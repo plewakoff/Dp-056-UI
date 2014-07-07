@@ -1,5 +1,3 @@
-window.addEventListener('load', main, false);
-
-function main () {
+$(function () {
     var person_controller = new PersonController();
-}
+});

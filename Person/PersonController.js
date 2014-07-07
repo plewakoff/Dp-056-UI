@@ -1,13 +1,12 @@
-function PersonController () {
-    var save_button = document.getElementById("save_button"),
-        edit_button = document.getElementById("edit_button"),
+/*function PersonController () {
+    var person = new Person(),
+        save_button = document.getElementById("save_button"),
         person_info = $("#person_info"),
         person_table = document.getElementById("person_table"),
-        person = new Person(),
-        person_template = _.template($("#person_template").html());
+        person_template = _.template($("#person_template").html()),
+        edit_button;
 
     save_button.addEventListener("click", savePerson, false);
-    edit_button.addEventListener("click", editPerson, false);
 
     function savePerson () {
         var name = document.getElementById("name").value,
@@ -19,47 +18,64 @@ function PersonController () {
             email  = document.getElementById("email").value,
             skype = document.getElementById("skype").value;
 
-        person.addAttribute("name", name);
-        person.addAttribute("surname", surname);
-        person.addAttribute("secondname", secondname);
-        person.addAttribute("age", age);
-        person.addAttribute("gender", gender);
-        person.addAttribute("phone", phone);
-        person.addAttribute("email", email);
-        person.addAttribute("skype", skype);
+        person.set({name: name,
+                    surname: surname,
+                    secondname: secondname,
+                    age: age,
+                    gender: gender,
+                    phone: phone,
+                    email: email,
+                    skype: skype});
 
         toHTML();
 
         save_button.style.display = "none";
         person_table.style.display = "none";
-        person_info.style.display = "inline";
-        edit_button.style.display = "block";
     }
 
     function toHTML () {
-        var person_hash = {},
-            key;
+        person_info.append(person_template(person.toJSON()));
 
-        person_info.innerHTML = "";
-        person_hash = person.toJSON();
-
-        person_info.append(person_template(person_hash));
-
-        /*for (key in person_hash) {
-            var div = document.createElement("div"),
-                br = document.createElement("br");
-
-            div.innerHTML = key + ": " + person_hash[key];
-
-            person_info.appendChild(div);
-            person_info.appendChild(br);
-        }*/
+        edit_button = person_info.find("#edit_button");
+        edit_button.click(editPerson);
     }
 
     function editPerson () {
         save_button.style.display = "inline";
         person_table.style.display = "inline";
         person_info.html("");
-        edit_button.style.display = "none";
     }
-}
+}*/
+var PersonController = Backbone.View.extend({
+    model: new Person(),
+    el: "#person",
+    events: {
+        "click .save_button": "savePerson"
+    },
+    save_button: $(this.el).find(".save_button"),
+    savePerson: function () {
+        this.model.set({name: $(this.el).find(".name").val(),
+            surname: $(this.el).find(".surname").val(),
+            secondname: $(this.el).find(".secondname").val(),
+            age: $(this.el).find(".age").val(),
+            gender: $(this.el).find(".gender").val(),
+            phone: $(this.el).find(".phone").val(),
+            email: $(this.el).find(".email").val(),
+            skype: $(this.el).find(".skype").val()});
+
+        this.render();
+
+        $(this.el).find(".save_button").css("display", "none");
+        $(this.el).find(".person_table").css("display", "none");
+    },
+    render: function () {
+        var person_template = _.template($("#person_template").html());
+        $(this.el).find(".person_info").append(person_template(this.model.toJSON()));
+        $(this.el).find(".edit_button").click(this.editPerson);
+    },
+    editPerson: function () {
+        $(this.el).find(".save_button").css("display", "block");
+        $(this.el).find(".person_table").css("display", "block");
+        $(this.el).find(".person_info").html("");
+    }
+});

@@ -1,4 +1,4 @@
-function Person () {
+/*function Person () {
     var attributes = {};
 
     this.addAttribute = function (key, value) {
@@ -32,4 +32,5 @@ function Person () {
     };
 
     return this;
-}
+}*/
+var Person = Backbone.Model.extend({});
