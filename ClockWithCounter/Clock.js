@@ -6,7 +6,7 @@ function Clock () {
         return value;
     };
 	
-	this.render = function () {};
+	this.toString = function () {};
 	
 	return this;
 }

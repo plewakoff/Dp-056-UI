@@ -1,21 +1,25 @@
 function ClockController (element) {
     var clock = new ShortClock(element),
 		mode = "short",
-		timer = setInterval(function () {clock.render();}, 1000);
+		timer = setInterval(function () {render();}, 1000);
 		
-	clock.render();
+	render();
 	
 	element.addEventListener("contextmenu", timeToDate, false);
     element.addEventListener("click", timeMode, false);
+
+    function render () {
+        element.innerHTML = clock.toString();
+    }
 	
 	function timeMode () {
         if(mode === "short") {
             clock = new FullClock(element);
-            clock.render();
+            render();
             mode = "full";
         } else {
             clock = new ShortClock(element);
-            clock.render();
+            render();
             mode = "short";
         }
     }
@@ -24,11 +28,11 @@ function ClockController (element) {
         e.preventDefault();
         if(mode !== "date") {
             clock = new DateClock(element);
-            clock.render();
+            render();
             mode = "date";
         } else {
             clock = new ShortClock(element);
-            clock.render();
+            render();
             mode = "short";
         }
     }
