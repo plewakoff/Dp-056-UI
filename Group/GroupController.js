@@ -1,54 +1,62 @@
-function GroupController (element) {
-    var group =  new Group(),
-        group_info = element.find(".group_info"),
-        add = element.find(".add"),
-        add_div = element.find(".add_div"),
-        cancel = element.find(".cancel"),
-        add_student = element.find(".add_student"),
-        student_name = element.find(".student_name"),
-        student_age = element.find(".student_age"),
-        student_gender = element.find(".student_gender");
+var GroupController = Backbone.View.extend({
+    group_template: _.template("<ul class='group_list'><%=name%></ul>"),
 
-    $(add).on("click", showAddDiv);
-    $(cancel).on("click", resetInput);
-    $(add_student).on("click", addStudentToGroup)
-                  .on("click", toHTML);
+    model: new Group(),
 
-    group.setName("Dp-056 JavaScript UI");
-    group_info.html(group.getName());
+    /*elements: {
+        group_info: $(this.el).find(".group_info"),
+        add: $(this.el).find(".add"),
+        add_div: $(this.el).find(".add_div"),
+        cancel: $(this.el).find(".cancel"),
+        add_student: $(this.el).find(".add_student"),
+        student_name: $(this.el).find(".student_name"),
+        student_age: $(this.el).find(".student_age"),
+        student_gender: $(this.el).find(".student_gender")
+    },*/
 
-    function showAddDiv () {
-        add_div.css("display", "block");
-        add.css("display", "none");
-    }
+    events: {
+        "click .add": "showAddDiv",
+        "click .cancel": "resetInput",
+        "click .add_student": "render"
+    },
 
-    function resetInput () {
-        student_name.val("");
-        student_age.val("");
-        student_gender.val("");
-        add_div.css("display", "none");
-        add.css("display", "block");
-    }
+    initialize: function () {
+        this.$el.find(".group_info").append(this.group_template(this.model.toJSON()));
+        this.$el.find(".add_div").addClass("hide");
+    },
 
-    function addStudentToGroup () {
+    showAddDiv: function () {
+        this.$el.find(".add_div").removeClass("hide");
+        this.$el.find(".add").addClass("hide");
+    },
+
+    resetInput: function () {
+        this.$el.find(".student_name").val("");
+        this.$el.find(".student_age").val("");
+        this.$el.find(".student_gender").val("");
+        this.$el.find(".add_div").addClass("hide");
+        this.$el.find(".add").removeClass("hide");
+    },
+
+    render: function () {
+        this.addStudentToGroup();
+        this.$el.find(".group_info").html("");
+        this.$el.find(".group_info").append(this.group_template(this.model.toJSON()));
+        for (var i = 0; i < this.model.getNumberOfStudents(); i++) {
+            var student_controller = new StudentController(this.model.getStudent(i));
+            this.$el.find(".group_list").append(student_controller.render());
+        }
+    },
+
+    addStudentToGroup: function () {
         var student = new Student();
 
-        student.addAttribute("Name", student_name.val());
-        student.addAttribute("Age", student_age.val());
-        student.addAttribute("Gender", student_gender.val());
+        student.set("name", this.$el.find(".student_name").val());
+        student.set("age", this.$el.find(".student_age").val());
+        student.set("gender", this.$el.find(".student_gender").val());
 
-        group.addStudent(student);
+        this.model.addStudent(student);
 
-        resetInput();
+        this.resetInput();
     }
-
-    function toHTML() {
-        group_info.html(group.getName());
-        for (var i = 0; i < group.getNumberOfStudents(); i++) {
-            var student_controller = new StudentController(group.getStudent(i));
-            group_info.append(student_controller.toHTML());
-        }
-    }
-
-    return this;
-}
+});

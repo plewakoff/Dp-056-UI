@@ -1,24 +1,12 @@
-function Student () {
-    var attributes = {};
-
-    this.addAttribute = function (key, value) {
-        attributes[key] = value;
-    };
-
-    this.getAttribute = function (key) {
-        return attributes[key];
-    };
-
-    this.toString = function () {
+var Student = Backbone.Model.extend({
+    toString: function () {
         var str = "",
             key;
 
-        for (key in attributes) {
-            str += attributes[key] + " ";
+        for (key in this.attributes) {
+            str += this.attributes[key] + " ";
         }
 
         return str;
-    };
-
-    return this;
-}
+    }
+});

@@ -1,26 +1,19 @@
-function Group () {
-    var students = [],
-        name;
+var Group = Backbone.Model.extend({
+    defaults: {
+        name: "Dp-056 JavaScript UI"
+    },
 
-    this.setName = function (value) {
-        name = value;
-    };
+    collection: [],
 
-    this.getName = function () {
-        return name;
-    };
+    addStudent: function (student) {
+        this.collection.push(student);
+    },
 
-    this.addStudent = function (student) {
-        students.push(student);
-    };
+    getStudent: function (i) {
+        return this.collection[i];
+    },
 
-    this.getStudent = function (i) {
-        return students[i];
-    };
-
-    this.getNumberOfStudents = function () {
-        return students.length;
-    };
-
-    return this;
-}
+    getNumberOfStudents: function () {
+        return this.collection.length;
+    }
+});

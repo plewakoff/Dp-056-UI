@@ -1,3 +1,5 @@
 $(function () {
-    var group_controller = new GroupController($("#group"));
+    var group_controller = new GroupController({
+        el: $("#group")
+    });
 });
