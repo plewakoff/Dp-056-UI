@@ -1,9 +1,7 @@
-var Group = Backbone.Model.extend({
-    defaults: {
-        name: "Dp-056 JavaScript UI"
-    },
+var Group = Backbone.Collection.extend({
+    name: "Dp-056 JavaScript UI"
 
-    collection: [],
+    /*collection: [],
 
     addStudent: function (student) {
         this.collection.push(student);
@@ -15,5 +13,5 @@ var Group = Backbone.Model.extend({
 
     getNumberOfStudents: function () {
         return this.collection.length;
-    }
+    }*/
 });
